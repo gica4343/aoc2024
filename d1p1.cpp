@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -15,17 +16,12 @@ int main() {
     list2.push_back(n2);
   }
 
+  sort(list1.begin(), list1.end());
+  sort(list2.begin(), list2.end());
+
   long long sum = 0;
   for (size_t i = 0; i < list1.size(); i++) {
-    int count = 0;
-    for (size_t j = 0; j < list2.size(); j++) {
-      if (list1[i] == list2[j]) {
-        count++;
-      }
-    }
-    if (count) {
-      sum += list1[i] * count;
-    }
+    sum += abs(list1[i] - list2[i]);
   }
   
   cout << sum;
